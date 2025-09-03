@@ -1,0 +1,79 @@
+#Create array
+numbers = [10, 20, 30, 40, 50]
+print(numbers)
+
+#Print first and last numbers in array
+print("First:", numbers[0])
+print("Last:", numbers[-1])
+
+#Modifying arrays
+numbers.append(60)
+numbers.insert(2, 25) #adds the number 25 at index 2
+print("Added the number 25 to index 2:", numbers)
+numbers.remove(40) #removes the actual number 40
+    #If number is not in array, you will get an error
+print("Removed the number 40:", numbers)
+numbers[0] = 5 #changes the first number to 5
+print("Changed the first number to 5:", numbers)
+
+#Loop through an array
+for num in numbers:
+    print(num + 2)
+    #prints each number in the array (plus 2) on a seperate line
+
+#Searching and slicing
+    #Slicing allows you to take part of an array/list and put in different variable without changing the original
+    #You specify start and end index. Syntax: subArray: originalArray[0:3]... this gives first 3 numbers
+    #The end index does NOT include that number
+#Search:
+if 30 in numbers:
+    print("30 is in the array")
+else:
+    print("30 is not in the array")
+
+#Splice:
+firstThree = numbers[0:3]
+print("The first 3 numbers in array are:", firstThree)
+
+#Other array functions
+print("Sum of array is:", sum(numbers))
+print("Max number in array is:", max(numbers))
+print("Min number in array is:", min(numbers))
+
+#Reverse array
+    #You can't assign numbers.reverse() to a new variable. You probably first have to make a copy of array and then reverse the 
+        #copy if you want to keep original array too
+numbers.reverse()
+print("Reversed array:", numbers)
+
+#Array manipulation
+#Practice 1: multiply each even number by 3
+for i in range(len(numbers)):
+    if numbers[i] % 2 == 0:
+        numbers[i] *= 3
+print("Multiplied even numbers by 3:", numbers)
+
+#Practice 2: Remove all numbers greater than 50
+ #At first I tried looping through the length of numbres, but it gave an out of index error because once you start removing
+ #elements from the array, then there will be no numbers in the later indexes.
+  #So, other options are either looping backwards, or creating a new array
+
+copyNumbers = numbers[:]
+
+  #Looping backwards:
+for i in range(len(copyNumbers)-1, -1, -1):  #range(start, stop, step)
+                                                #start: len(numbers) - 1 ... this means start at the last index
+                                                #stop: we want to stop at index 0, but python stops before the stop number, so -1
+                                                #step: -1 means go backwards one index at a time
+    if copyNumbers[i] > 50:
+        copyNumbers.remove(copyNumbers[i])
+print(copyNumbers)
+
+  #Creating new array:
+filteredNumbers = []
+for num in numbers:
+    if num <= 50:
+        filteredNumbers.append(num) #creates a new array of all numbers < 50 because we want to remove all numbers > 50
+numbers = filteredNumbers
+print(numbers)
+
